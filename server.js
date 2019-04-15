@@ -18,6 +18,20 @@ db.on("error", function(error){
     console.log("Database Error:", error)
 });
 
+//checks for server response
 app.get("/", function (req, res) {
     res.send("Hello world!")
 });
+
+app.get("/all", function(req, res) {
+    db.state.find({}, function(error, found) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            res.json(found);
+        }
+    });
+});
+
+app.get("/weather", function (req, res) {};)
