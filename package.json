@@ -1,0 +1,29 @@
+{
+  "name": "weather-graph",
+  "version": "1.0.0",
+  "description": "\"Friend finder\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "author": "\"Daryl Cimafranca\"",
+  "license": "ISC",
+  "dependencies": {
+    "all": "0.0.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cimafrancad45/weather-graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cimafrancad45/weather-graph/issues"
+  },
+  "homepage": "https://github.com/cimafrancad45/weather-graph#readme"
+}

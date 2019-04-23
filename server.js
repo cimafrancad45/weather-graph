@@ -1,10 +1,15 @@
 //dependencies using express js and mongodb NPMs
 const express = require("express");
 const mongojs = require("mongodb");
+const bodyParser = require("body-parser");
 
 //express js initialization
 var app = express();
+var PORT = process.env.PORT || 3030;
 
+// BodyParser for JSON data handling by express
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //folder for express js
 
 // Database configuration
