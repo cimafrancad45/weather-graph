@@ -1,11 +1,11 @@
 //dependencies using express js and mongodb NPMs
 const express = require("express");
-const mongojs = require("mongodb");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 //express js initialization
-var app = express();
-var PORT = process.env.PORT || 3030;
+let app = express();
+const PORT = process.env.PORT || 3030;
 
 // BodyParser for JSON data handling by express
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 let databaseUrl = "weather";
 let collections =["state"]
 
-let db = mongojs(databaseUrl, collections);
+let db = mongoose(databaseUrl, collections);
 
 //error logging 
 db.on("error", function(error){
@@ -39,4 +39,9 @@ app.get("/all", function(req, res) {
     });
 });
 
-app.get("/weather", function (req, res) {};)
+app.listen(PORT, function() {
+
+    // Log (server-side) when our server has started
+    console.log("server on PORT: "+ PORT);
+  });
+  
