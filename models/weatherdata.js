@@ -9,7 +9,7 @@ city: {
     type: String,
     required: true
 },
-state: {
+country: {
     type: String,
     required: true
 },
@@ -18,11 +18,9 @@ map: {
     type: String,
     required: true
 },
-fiveDay: {
-    temperature: {
-        type: String,
-        required: true
-    }
+temperature: {
+    type: String,
+    required: true
 }
 
 })

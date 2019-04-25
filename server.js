@@ -1,44 +1,43 @@
 //dependencies using express js and mongodb NPMs
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongojs = require("mongojs");
 
-//express js initialization
-let app = express();
-const PORT = process.env.PORT || 3030;
 
-// BodyParser for JSON data handling by express
+//express js initialization with port number for testing purposes.
+var app = express();
+var PORT = process.env.PORT || 3030;
+
+//database config
+var databaseUrl = "forecasts";
+var collections = ["temperature"];
+
+var db = mongjos(databaseUrl, collections);
+
+//error check
+db.on("error", function(error) {
+  console.log("Database Error:", error);
+});
+
+
+// BodyParser for JSON data
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//folder for express js
 
-// Database configuration
-let databaseUrl = "weather";
-let collections =["state"]
+//Mongodb connection
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/weathergraph";
 
-let db = mongoose(databaseUrl, collections);
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
-//error logging 
-db.on("error", function(error){
-    console.log("Database Error:", error)
-});
 
-//checks for server response
-app.get("/", function (req, res) {
-    res.send("Hello world!")
-});
+routes
+require("./routes/htmlRoutes.js")(app);
+require("./routes/weatherapi.js")(app);
 
-app.get("/all", function(req, res) {
-    db.state.find({}, function(error, found) {
-        if(error) {
-            console.log(error);
-        }
-        else {
-            res.json(found);
-        }
-    });
-});
-
+//port listener
 app.listen(PORT, function() {
 
     // Log (server-side) when our server has started
